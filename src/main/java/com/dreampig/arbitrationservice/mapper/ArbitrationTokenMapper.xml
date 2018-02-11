@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dreampig.arbitrationservice.mapper.ArbitrationTokenMapper">
+  <resultMap id="BaseResultMap" type="com.dreampig.arbitrationservice.model.ArbitrationToken">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="auth_id" jdbcType="INTEGER" property="authId" />
+    <result column="auth_token" jdbcType="CHAR" property="authToken" />
+    <result column="auth_token_expir_time" jdbcType="TIMESTAMP" property="authTokenExpirTime" />
+    <result column="cratetime" jdbcType="TIMESTAMP" property="cratetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, auth_id, auth_token, auth_token_expir_time, cratetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_arb_token
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_arb_token
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dreampig.arbitrationservice.model.ArbitrationToken">
+    insert into t_arb_token (id, auth_id, auth_token, 
+      auth_token_expir_time, cratetime)
+    values (#{id,jdbcType=INTEGER}, #{authId,jdbcType=INTEGER}, #{authToken,jdbcType=CHAR}, 
+      #{authTokenExpirTime,jdbcType=TIMESTAMP}, #{cratetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dreampig.arbitrationservice.model.ArbitrationToken">
+    insert into t_arb_token
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="authId != null">
+        auth_id,
+      </if>
+      <if test="authToken != null">
+        auth_token,
+      </if>
+      <if test="authTokenExpirTime != null">
+        auth_token_expir_time,
+      </if>
+      <if test="cratetime != null">
+        cratetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="authId != null">
+        #{authId,jdbcType=INTEGER},
+      </if>
+      <if test="authToken != null">
+        #{authToken,jdbcType=CHAR},
+      </if>
+      <if test="authTokenExpirTime != null">
+        #{authTokenExpirTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cratetime != null">
+        #{cratetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dreampig.arbitrationservice.model.ArbitrationToken">
+    update t_arb_token
+    <set>
+      <if test="authId != null">
+        auth_id = #{authId,jdbcType=INTEGER},
+      </if>
+      <if test="authToken != null">
+        auth_token = #{authToken,jdbcType=CHAR},
+      </if>
+      <if test="authTokenExpirTime != null">
+        auth_token_expir_time = #{authTokenExpirTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cratetime != null">
+        cratetime = #{cratetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dreampig.arbitrationservice.model.ArbitrationToken">
+    update t_arb_token
+    set auth_id = #{authId,jdbcType=INTEGER},
+      auth_token = #{authToken,jdbcType=CHAR},
+      auth_token_expir_time = #{authTokenExpirTime,jdbcType=TIMESTAMP},
+      cratetime = #{cratetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
