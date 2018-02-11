@@ -1,5 +1,6 @@
 package com.dreampig.arbitrationservice.model;
 
+
 public class Authentication {
     private Integer id;
 

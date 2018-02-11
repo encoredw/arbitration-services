@@ -1,10 +1,8 @@
-package com.dreampig.arbitrationservice.mapper;
+package com.dreampig.arbitrationservice.service;
 
 import com.dreampig.arbitrationservice.model.Authentication;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public interface AuthenticationMapper {
+public interface AuthenticationService {
 
     int deleteByPrimaryKey(Integer id);
 
