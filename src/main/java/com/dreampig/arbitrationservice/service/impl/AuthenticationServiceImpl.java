@@ -38,6 +38,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
+    public Authentication selectByAuthentication(Authentication record) {
+        if(record.getSid()!=null && record.getType()!=null && record.getPassword() !=null){
+            return authenticationMapper.selectByAuthentication(record);
+        }
+        return null;
+    }
+
+    @Override
     public int updateByPrimaryKey(Authentication record) {
         return authenticationMapper.updateByPrimaryKey(record);
     }

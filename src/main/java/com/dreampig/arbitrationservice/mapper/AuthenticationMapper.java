@@ -14,6 +14,8 @@ public interface AuthenticationMapper {
 
     Authentication selectByPrimaryKey(Integer id);
 
+    Authentication selectByAuthentication(Authentication record);
+
     int updateByPrimaryKeySelective(Authentication record);
 
     int updateByPrimaryKey(Authentication record);

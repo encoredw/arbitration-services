@@ -16,6 +16,12 @@
     from t_authentication
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByAuthentication" parameterType="com.dreampig.arbitrationservice.model.Authentication" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_authentication
+    where password = #{password,jdbcType=VARCHAR} and type = #{type,jdbcType=VARCHAR} and sid= #{sid,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_authentication
     where id = #{id,jdbcType=INTEGER}

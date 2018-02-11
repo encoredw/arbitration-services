@@ -15,4 +15,6 @@ public interface AuthenticationService {
     int updateByPrimaryKeySelective(Authentication record);
 
     int updateByPrimaryKey(Authentication record);
+
+    Authentication selectByAuthentication(Authentication record);
 }
