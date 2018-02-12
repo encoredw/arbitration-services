@@ -33,7 +33,7 @@ public class UploadContractsController {
     @Autowired
     private NotarialCertificateSumService notarialCertificateSumService;
 
-    @RequestMapping(value = "/applyContractInitData",produces = "text/plain;charset=UTF-8",method = RequestMethod.POST)
+    @RequestMapping(value = "/applyContractInitData",method = RequestMethod.POST)
     @ResponseBody
     public MessageData uploadContracts(String type, String sign, String token, @RequestBody String contracts){
         MessageData messageData = new MessageData();
