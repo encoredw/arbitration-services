@@ -12,7 +12,7 @@ public class ArbitrationTokenProcessor {
     private long previous;
     private static  ArbitrationTokenProcessor atp = new ArbitrationTokenProcessor();
 
-    public synchronized String generateToken(String sid){
+    public synchronized String generateToken(String sid,Boolean dymic){
         try {
             long current = System.currentTimeMillis();
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -21,7 +21,10 @@ public class ArbitrationTokenProcessor {
             }
             previous = current;
             md.update(sid.getBytes());
-
+            if(dymic){
+                byte now[] = (new Long(current)).toString().getBytes();
+                md.update(now);
+            }
             return toHex(md.digest());
         }catch (Exception e){
             e.printStackTrace();
