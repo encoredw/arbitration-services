@@ -17,6 +17,12 @@
     from t_arb_token
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByToken" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_arb_token
+    where auth_token = #{authToken,jdbcType=CHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_arb_token
     where id = #{id,jdbcType=INTEGER}

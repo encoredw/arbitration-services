@@ -11,6 +11,8 @@ public interface ArbitrationTokenService {
 
     ArbitrationToken selectByPrimaryKey(Integer id);
 
+    boolean verifyToken(String token);
+
     int updateByPrimaryKeySelective(ArbitrationToken record);
 
     int updateByPrimaryKey(ArbitrationToken record);

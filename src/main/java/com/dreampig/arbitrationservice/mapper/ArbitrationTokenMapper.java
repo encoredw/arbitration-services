@@ -13,6 +13,8 @@ public interface ArbitrationTokenMapper {
 
     ArbitrationToken selectByPrimaryKey(Integer id);
 
+    ArbitrationToken selectByToken(String token);
+
     int updateByPrimaryKeySelective(ArbitrationToken record);
 
     int updateByPrimaryKey(ArbitrationToken record);

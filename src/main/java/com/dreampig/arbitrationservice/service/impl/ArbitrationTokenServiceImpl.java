@@ -6,6 +6,8 @@ import com.dreampig.arbitrationservice.service.ArbitrationTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 @Service(value = "arbitrationTokenService")
 public class ArbitrationTokenServiceImpl implements ArbitrationTokenService {
 
@@ -40,5 +42,32 @@ public class ArbitrationTokenServiceImpl implements ArbitrationTokenService {
     @Override
     public int updateByPrimaryKey(ArbitrationToken record) {
         return arbitrationTokenMapper.updateByPrimaryKey(record);
+    }
+
+
+    /**
+     * 验证token的有效性
+     * @param token 令牌
+     * @return
+     */
+    @Override
+    public boolean verifyToken(String token){
+        if(token != null){
+            ArbitrationToken arbitrationToken =  arbitrationTokenMapper.selectByToken(token);
+            if(arbitrationToken != null){
+                long current = System.currentTimeMillis();
+                Date date = new Date(current);
+                if(date.before(arbitrationToken.getAuthTokenExpirTime())){
+                    return true;
+                }else {
+                    arbitrationTokenMapper.deleteByPrimaryKey(arbitrationToken.getId());
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
 }
