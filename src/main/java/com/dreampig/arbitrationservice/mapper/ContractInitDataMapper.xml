@@ -34,7 +34,7 @@
     delete from t_contractinitdata
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dreampig.arbitrationservice.model.ContractInitData">
+  <insert id="insert" parameterType="com.dreampig.arbitrationservice.model.ContractInitData" useGeneratedKeys="true" keyProperty="id">
     insert into t_contractinitdata (id, type, sign, 
       fileBodyMd5, fileBodyHash, notarialCertificateApplicatSumJson, 
       lenderInfos, updatetime, createtime, 
@@ -44,7 +44,7 @@
       #{lenderinfos,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, 
       #{filebody,jdbcType=LONGVARBINARY})
   </insert>
-  <insert id="insertSelective" parameterType="com.dreampig.arbitrationservice.model.ContractInitData">
+  <insert id="insertSelective" parameterType="com.dreampig.arbitrationservice.model.ContractInitData" useGeneratedKeys="true" keyProperty="id">
     insert into t_contractinitdata
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

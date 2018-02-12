@@ -143,7 +143,7 @@ type varchar(255) NULL COMMENT '业务区分',
 
 sign varchar(255) NULL,
 
-fileBody blob NULL,
+fileBody longblob NULL,
 
 fileBodyMd5 varchar(255) NULL,
 

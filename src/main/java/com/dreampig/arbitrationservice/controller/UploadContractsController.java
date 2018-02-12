@@ -1,6 +1,7 @@
 package com.dreampig.arbitrationservice.controller;
 
 
+import com.dreampig.arbitrationservice.common.AESUtils;
 import com.dreampig.arbitrationservice.common.ArbitrationJsonConvert;
 import com.dreampig.arbitrationservice.common.MessageData;
 import com.dreampig.arbitrationservice.model.ContractInitData;
@@ -13,6 +14,8 @@ import com.dreampig.arbitrationservice.service.LenderInfoService;
 import com.dreampig.arbitrationservice.service.NotarialCertificateSumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 /**
  * 合同保全上传接口
@@ -30,7 +33,7 @@ public class UploadContractsController {
     @Autowired
     private NotarialCertificateSumService notarialCertificateSumService;
 
-    @RequestMapping(value = "/applyContractInitData",method = RequestMethod.POST)
+    @RequestMapping(value = "/applyContractInitData",produces = "text/plain;charset=UTF-8",method = RequestMethod.POST)
     @ResponseBody
     public MessageData uploadContracts(String type, String sign, String token, @RequestBody String contracts){
         MessageData messageData = new MessageData();
@@ -42,6 +45,26 @@ public class UploadContractsController {
                     NotarialCertificateSum notarialCertificateSum =  contractInitDataJson.getNotarialCertificateApplicatSumJson();
                     LenderInfo lenderInfo = contractInitDataJson.getLenderInfos().get(0);
 
+                    contractInitData.setType(type);
+                    contractInitData.setSign(sign);
+                    contractInitData.setFilebody(contractInitDataJson.getFileBody());
+                    contractInitData.setFilebodymd5(contractInitDataJson.getFileBodyMD5());
+                    contractInitData.setCreatetime(new Date());
+                   // contractInitData.setFilebodyhash(AESUtils.byteToHexString(contractInitDataJson.getFileBody()));
+                    try {
+                       int ncfsId = notarialCertificateSumService.insertSelective(notarialCertificateSum);
+                       int lnfsId = lenderInfoService.insertSelective(lenderInfo);
+                        contractInitData.setNotarialcertificateapplicatsumjson(notarialCertificateSum.getId());
+                        contractInitData.setLenderinfos(lenderInfo.getId());
+                       int ctdsId = contractInitDataService.insertSelective(contractInitData);
+                       if(ncfsId==1 && lnfsId==1 && ctdsId==1){
+                           messageData.setRetCode("0000");
+                           messageData.setRetMsg("Success");
+                           messageData.setSaveCode(contractInitData.getId().toString());
+                       }
+                    }catch (Exception e){
+                       e.printStackTrace();
+                    }
 
                 }
 

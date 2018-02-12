@@ -40,7 +40,7 @@
     delete from t_lender_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dreampig.arbitrationservice.model.LenderInfo">
+  <insert id="insert" parameterType="com.dreampig.arbitrationservice.model.LenderInfo" useGeneratedKeys="true" keyProperty="id">
     insert into t_lender_info (id, lenderType, lenderName, 
       lenderGender, lenderBirthday, lenderCardType, 
       lenderCardNo, lenderMobile, lenderBankEmail, 
@@ -60,7 +60,7 @@
       #{lenderbank,jdbcType=VARCHAR}, #{lenderbankcardno,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{cratetime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.dreampig.arbitrationservice.model.LenderInfo">
+  <insert id="insertSelective" parameterType="com.dreampig.arbitrationservice.model.LenderInfo" useGeneratedKeys="true" keyProperty="id">
     insert into t_lender_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

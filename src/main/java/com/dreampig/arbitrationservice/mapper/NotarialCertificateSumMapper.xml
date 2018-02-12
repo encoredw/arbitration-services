@@ -51,7 +51,7 @@
     delete from t_notarial_certificate_sum
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.dreampig.arbitrationservice.model.NotarialCertificateSum">
+  <insert id="insert" parameterType="com.dreampig.arbitrationservice.model.NotarialCertificateSum" useGeneratedKeys="true" keyProperty="id">
     insert into t_notarial_certificate_sum (id, businessCode01, businessCode02, 
       businessCode03, borrowerName, borrowerGender, 
       borrowerBirthday, borrowerEnName, borrowerCardType, 
@@ -75,7 +75,7 @@
       #{contractamount,jdbcType=REAL}, #{repaymenttype,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{createtime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.dreampig.arbitrationservice.model.NotarialCertificateSum">
+  <insert id="insertSelective" parameterType="com.dreampig.arbitrationservice.model.NotarialCertificateSum" useGeneratedKeys="true" keyProperty="id">
     insert into t_notarial_certificate_sum
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
