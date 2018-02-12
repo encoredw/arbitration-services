@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dreampig.arbitrationservice.mapper.LenderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.dreampig.arbitrationservice.model.LenderInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="lenderType" jdbcType="CHAR" property="lendertype" />
+    <result column="lenderName" jdbcType="VARCHAR" property="lendername" />
+    <result column="lenderGender" jdbcType="CHAR" property="lendergender" />
+    <result column="lenderBirthday" jdbcType="DATE" property="lenderbirthday" />
+    <result column="lenderCardType" jdbcType="CHAR" property="lendercardtype" />
+    <result column="lenderCardNo" jdbcType="VARCHAR" property="lendercardno" />
+    <result column="lenderMobile" jdbcType="VARCHAR" property="lendermobile" />
+    <result column="lenderBankEmail" jdbcType="VARCHAR" property="lenderbankemail" />
+    <result column="lenderOrganizationName" jdbcType="VARCHAR" property="lenderorganizationname" />
+    <result column="lenderOrganizationCode" jdbcType="VARCHAR" property="lenderorganizationcode" />
+    <result column="lenderOrganizationAdd" jdbcType="VARCHAR" property="lenderorganizationadd" />
+    <result column="lenderOrganizationContact" jdbcType="VARCHAR" property="lenderorganizationcontact" />
+    <result column="lenderOrganizationEmail" jdbcType="VARCHAR" property="lenderorganizationemail" />
+    <result column="lenderLegalName" jdbcType="VARCHAR" property="lenderlegalname" />
+    <result column="lenderLegalCardType" jdbcType="VARCHAR" property="lenderlegalcardtype" />
+    <result column="lenderLegalCardNo" jdbcType="VARCHAR" property="lenderlegalcardno" />
+    <result column="lenderBank" jdbcType="VARCHAR" property="lenderbank" />
+    <result column="lenderBankCardNo" jdbcType="VARCHAR" property="lenderbankcardno" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="cratetime" jdbcType="TIMESTAMP" property="cratetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, lenderType, lenderName, lenderGender, lenderBirthday, lenderCardType, lenderCardNo, 
+    lenderMobile, lenderBankEmail, lenderOrganizationName, lenderOrganizationCode, lenderOrganizationAdd, 
+    lenderOrganizationContact, lenderOrganizationEmail, lenderLegalName, lenderLegalCardType, 
+    lenderLegalCardNo, lenderBank, lenderBankCardNo, updatetime, cratetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_lender_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_lender_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dreampig.arbitrationservice.model.LenderInfo">
+    insert into t_lender_info (id, lenderType, lenderName, 
+      lenderGender, lenderBirthday, lenderCardType, 
+      lenderCardNo, lenderMobile, lenderBankEmail, 
+      lenderOrganizationName, lenderOrganizationCode, 
+      lenderOrganizationAdd, lenderOrganizationContact, 
+      lenderOrganizationEmail, lenderLegalName, 
+      lenderLegalCardType, lenderLegalCardNo, 
+      lenderBank, lenderBankCardNo, updatetime, 
+      cratetime)
+    values (#{id,jdbcType=INTEGER}, #{lendertype,jdbcType=CHAR}, #{lendername,jdbcType=VARCHAR}, 
+      #{lendergender,jdbcType=CHAR}, #{lenderbirthday,jdbcType=DATE}, #{lendercardtype,jdbcType=CHAR}, 
+      #{lendercardno,jdbcType=VARCHAR}, #{lendermobile,jdbcType=VARCHAR}, #{lenderbankemail,jdbcType=VARCHAR}, 
+      #{lenderorganizationname,jdbcType=VARCHAR}, #{lenderorganizationcode,jdbcType=VARCHAR}, 
+      #{lenderorganizationadd,jdbcType=VARCHAR}, #{lenderorganizationcontact,jdbcType=VARCHAR}, 
+      #{lenderorganizationemail,jdbcType=VARCHAR}, #{lenderlegalname,jdbcType=VARCHAR}, 
+      #{lenderlegalcardtype,jdbcType=VARCHAR}, #{lenderlegalcardno,jdbcType=VARCHAR}, 
+      #{lenderbank,jdbcType=VARCHAR}, #{lenderbankcardno,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{cratetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dreampig.arbitrationservice.model.LenderInfo">
+    insert into t_lender_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="lendertype != null">
+        lenderType,
+      </if>
+      <if test="lendername != null">
+        lenderName,
+      </if>
+      <if test="lendergender != null">
+        lenderGender,
+      </if>
+      <if test="lenderbirthday != null">
+        lenderBirthday,
+      </if>
+      <if test="lendercardtype != null">
+        lenderCardType,
+      </if>
+      <if test="lendercardno != null">
+        lenderCardNo,
+      </if>
+      <if test="lendermobile != null">
+        lenderMobile,
+      </if>
+      <if test="lenderbankemail != null">
+        lenderBankEmail,
+      </if>
+      <if test="lenderorganizationname != null">
+        lenderOrganizationName,
+      </if>
+      <if test="lenderorganizationcode != null">
+        lenderOrganizationCode,
+      </if>
+      <if test="lenderorganizationadd != null">
+        lenderOrganizationAdd,
+      </if>
+      <if test="lenderorganizationcontact != null">
+        lenderOrganizationContact,
+      </if>
+      <if test="lenderorganizationemail != null">
+        lenderOrganizationEmail,
+      </if>
+      <if test="lenderlegalname != null">
+        lenderLegalName,
+      </if>
+      <if test="lenderlegalcardtype != null">
+        lenderLegalCardType,
+      </if>
+      <if test="lenderlegalcardno != null">
+        lenderLegalCardNo,
+      </if>
+      <if test="lenderbank != null">
+        lenderBank,
+      </if>
+      <if test="lenderbankcardno != null">
+        lenderBankCardNo,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="cratetime != null">
+        cratetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lendertype != null">
+        #{lendertype,jdbcType=CHAR},
+      </if>
+      <if test="lendername != null">
+        #{lendername,jdbcType=VARCHAR},
+      </if>
+      <if test="lendergender != null">
+        #{lendergender,jdbcType=CHAR},
+      </if>
+      <if test="lenderbirthday != null">
+        #{lenderbirthday,jdbcType=DATE},
+      </if>
+      <if test="lendercardtype != null">
+        #{lendercardtype,jdbcType=CHAR},
+      </if>
+      <if test="lendercardno != null">
+        #{lendercardno,jdbcType=VARCHAR},
+      </if>
+      <if test="lendermobile != null">
+        #{lendermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderbankemail != null">
+        #{lenderbankemail,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderorganizationname != null">
+        #{lenderorganizationname,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderorganizationcode != null">
+        #{lenderorganizationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderorganizationadd != null">
+        #{lenderorganizationadd,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderorganizationcontact != null">
+        #{lenderorganizationcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderorganizationemail != null">
+        #{lenderorganizationemail,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderlegalname != null">
+        #{lenderlegalname,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderlegalcardtype != null">
+        #{lenderlegalcardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderlegalcardno != null">
+        #{lenderlegalcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderbank != null">
+        #{lenderbank,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderbankcardno != null">
+        #{lenderbankcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cratetime != null">
+        #{cratetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dreampig.arbitrationservice.model.LenderInfo">
+    update t_lender_info
+    <set>
+      <if test="lendertype != null">
+        lenderType = #{lendertype,jdbcType=CHAR},
+      </if>
+      <if test="lendername != null">
+        lenderName = #{lendername,jdbcType=VARCHAR},
+      </if>
+      <if test="lendergender != null">
+        lenderGender = #{lendergender,jdbcType=CHAR},
+      </if>
+      <if test="lenderbirthday != null">
+        lenderBirthday = #{lenderbirthday,jdbcType=DATE},
+      </if>
+      <if test="lendercardtype != null">
+        lenderCardType = #{lendercardtype,jdbcType=CHAR},
+      </if>
+      <if test="lendercardno != null">
+        lenderCardNo = #{lendercardno,jdbcType=VARCHAR},
+      </if>
+      <if test="lendermobile != null">
+        lenderMobile = #{lendermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderbankemail != null">
+        lenderBankEmail = #{lenderbankemail,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderorganizationname != null">
+        lenderOrganizationName = #{lenderorganizationname,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderorganizationcode != null">
+        lenderOrganizationCode = #{lenderorganizationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderorganizationadd != null">
+        lenderOrganizationAdd = #{lenderorganizationadd,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderorganizationcontact != null">
+        lenderOrganizationContact = #{lenderorganizationcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderorganizationemail != null">
+        lenderOrganizationEmail = #{lenderorganizationemail,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderlegalname != null">
+        lenderLegalName = #{lenderlegalname,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderlegalcardtype != null">
+        lenderLegalCardType = #{lenderlegalcardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderlegalcardno != null">
+        lenderLegalCardNo = #{lenderlegalcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderbank != null">
+        lenderBank = #{lenderbank,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderbankcardno != null">
+        lenderBankCardNo = #{lenderbankcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cratetime != null">
+        cratetime = #{cratetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dreampig.arbitrationservice.model.LenderInfo">
+    update t_lender_info
+    set lenderType = #{lendertype,jdbcType=CHAR},
+      lenderName = #{lendername,jdbcType=VARCHAR},
+      lenderGender = #{lendergender,jdbcType=CHAR},
+      lenderBirthday = #{lenderbirthday,jdbcType=DATE},
+      lenderCardType = #{lendercardtype,jdbcType=CHAR},
+      lenderCardNo = #{lendercardno,jdbcType=VARCHAR},
+      lenderMobile = #{lendermobile,jdbcType=VARCHAR},
+      lenderBankEmail = #{lenderbankemail,jdbcType=VARCHAR},
+      lenderOrganizationName = #{lenderorganizationname,jdbcType=VARCHAR},
+      lenderOrganizationCode = #{lenderorganizationcode,jdbcType=VARCHAR},
+      lenderOrganizationAdd = #{lenderorganizationadd,jdbcType=VARCHAR},
+      lenderOrganizationContact = #{lenderorganizationcontact,jdbcType=VARCHAR},
+      lenderOrganizationEmail = #{lenderorganizationemail,jdbcType=VARCHAR},
+      lenderLegalName = #{lenderlegalname,jdbcType=VARCHAR},
+      lenderLegalCardType = #{lenderlegalcardtype,jdbcType=VARCHAR},
+      lenderLegalCardNo = #{lenderlegalcardno,jdbcType=VARCHAR},
+      lenderBank = #{lenderbank,jdbcType=VARCHAR},
+      lenderBankCardNo = #{lenderbankcardno,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      cratetime = #{cratetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

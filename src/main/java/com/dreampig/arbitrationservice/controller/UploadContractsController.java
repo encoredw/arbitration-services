@@ -2,6 +2,7 @@ package com.dreampig.arbitrationservice.controller;
 
 
 import com.dreampig.arbitrationservice.common.MessageData;
+import com.dreampig.arbitrationservice.model.ContractInitData;
 import com.dreampig.arbitrationservice.service.ArbitrationTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

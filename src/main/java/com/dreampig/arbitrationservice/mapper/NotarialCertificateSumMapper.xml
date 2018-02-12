@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dreampig.arbitrationservice.mapper.NotarialCertificateSumMapper">
+  <resultMap id="BaseResultMap" type="com.dreampig.arbitrationservice.model.NotarialCertificateSum">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="businessCode01" jdbcType="VARCHAR" property="businesscode01" />
+    <result column="businessCode02" jdbcType="VARCHAR" property="businesscode02" />
+    <result column="businessCode03" jdbcType="VARCHAR" property="businesscode03" />
+    <result column="borrowerName" jdbcType="VARCHAR" property="borrowername" />
+    <result column="borrowerGender" jdbcType="VARCHAR" property="borrowergender" />
+    <result column="borrowerBirthday" jdbcType="VARCHAR" property="borrowerbirthday" />
+    <result column="borrowerEnName" jdbcType="VARCHAR" property="borrowerenname" />
+    <result column="borrowerCardType" jdbcType="VARCHAR" property="borrowercardtype" />
+    <result column="borrowerCardPeriod" jdbcType="DATE" property="borrowercardperiod" />
+    <result column="borrowerCardNo" jdbcType="VARCHAR" property="borrowercardno" />
+    <result column="borrowerMobile" jdbcType="VARCHAR" property="borrowermobile" />
+    <result column="borrowerBank" jdbcType="VARCHAR" property="borrowerbank" />
+    <result column="borrowerBankCardNo" jdbcType="VARCHAR" property="borrowerbankcardno" />
+    <result column="borrowerAddress" jdbcType="VARCHAR" property="borroweraddress" />
+    <result column="borrowerPostCode" jdbcType="VARCHAR" property="borrowerpostcode" />
+    <result column="borrowerEmail" jdbcType="VARCHAR" property="borroweremail" />
+    <result column="contractSignTime" jdbcType="DATE" property="contractsigntime" />
+    <result column="borrowDeadLine" jdbcType="INTEGER" property="borrowdeadline" />
+    <result column="borrowDeadLineUnit" jdbcType="VARCHAR" property="borrowdeadlineunit" />
+    <result column="borrowStartTime" jdbcType="DATE" property="borrowstarttime" />
+    <result column="borrowEndTime" jdbcType="DATE" property="borrowendtime" />
+    <result column="borrowRate" jdbcType="REAL" property="borrowrate" />
+    <result column="productName" jdbcType="VARCHAR" property="productname" />
+    <result column="lenderActualOrganizationName" jdbcType="VARCHAR" property="lenderactualorganizationname" />
+    <result column="lenderActualOrganizationCode" jdbcType="VARCHAR" property="lenderactualorganizationcode" />
+    <result column="contractAmount" jdbcType="REAL" property="contractamount" />
+    <result column="repaymentType" jdbcType="VARCHAR" property="repaymenttype" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, businessCode01, businessCode02, businessCode03, borrowerName, borrowerGender, 
+    borrowerBirthday, borrowerEnName, borrowerCardType, borrowerCardPeriod, borrowerCardNo, 
+    borrowerMobile, borrowerBank, borrowerBankCardNo, borrowerAddress, borrowerPostCode, 
+    borrowerEmail, contractSignTime, borrowDeadLine, borrowDeadLineUnit, borrowStartTime, 
+    borrowEndTime, borrowRate, productName, lenderActualOrganizationName, lenderActualOrganizationCode, 
+    contractAmount, repaymentType, updatetime, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_notarial_certificate_sum
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_notarial_certificate_sum
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dreampig.arbitrationservice.model.NotarialCertificateSum">
+    insert into t_notarial_certificate_sum (id, businessCode01, businessCode02, 
+      businessCode03, borrowerName, borrowerGender, 
+      borrowerBirthday, borrowerEnName, borrowerCardType, 
+      borrowerCardPeriod, borrowerCardNo, borrowerMobile, 
+      borrowerBank, borrowerBankCardNo, borrowerAddress, 
+      borrowerPostCode, borrowerEmail, contractSignTime, 
+      borrowDeadLine, borrowDeadLineUnit, borrowStartTime, 
+      borrowEndTime, borrowRate, productName, 
+      lenderActualOrganizationName, lenderActualOrganizationCode, 
+      contractAmount, repaymentType, updatetime, 
+      createtime)
+    values (#{id,jdbcType=INTEGER}, #{businesscode01,jdbcType=VARCHAR}, #{businesscode02,jdbcType=VARCHAR}, 
+      #{businesscode03,jdbcType=VARCHAR}, #{borrowername,jdbcType=VARCHAR}, #{borrowergender,jdbcType=VARCHAR}, 
+      #{borrowerbirthday,jdbcType=VARCHAR}, #{borrowerenname,jdbcType=VARCHAR}, #{borrowercardtype,jdbcType=VARCHAR}, 
+      #{borrowercardperiod,jdbcType=DATE}, #{borrowercardno,jdbcType=VARCHAR}, #{borrowermobile,jdbcType=VARCHAR}, 
+      #{borrowerbank,jdbcType=VARCHAR}, #{borrowerbankcardno,jdbcType=VARCHAR}, #{borroweraddress,jdbcType=VARCHAR}, 
+      #{borrowerpostcode,jdbcType=VARCHAR}, #{borroweremail,jdbcType=VARCHAR}, #{contractsigntime,jdbcType=DATE}, 
+      #{borrowdeadline,jdbcType=INTEGER}, #{borrowdeadlineunit,jdbcType=VARCHAR}, #{borrowstarttime,jdbcType=DATE}, 
+      #{borrowendtime,jdbcType=DATE}, #{borrowrate,jdbcType=REAL}, #{productname,jdbcType=VARCHAR}, 
+      #{lenderactualorganizationname,jdbcType=VARCHAR}, #{lenderactualorganizationcode,jdbcType=VARCHAR}, 
+      #{contractamount,jdbcType=REAL}, #{repaymenttype,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dreampig.arbitrationservice.model.NotarialCertificateSum">
+    insert into t_notarial_certificate_sum
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="businesscode01 != null">
+        businessCode01,
+      </if>
+      <if test="businesscode02 != null">
+        businessCode02,
+      </if>
+      <if test="businesscode03 != null">
+        businessCode03,
+      </if>
+      <if test="borrowername != null">
+        borrowerName,
+      </if>
+      <if test="borrowergender != null">
+        borrowerGender,
+      </if>
+      <if test="borrowerbirthday != null">
+        borrowerBirthday,
+      </if>
+      <if test="borrowerenname != null">
+        borrowerEnName,
+      </if>
+      <if test="borrowercardtype != null">
+        borrowerCardType,
+      </if>
+      <if test="borrowercardperiod != null">
+        borrowerCardPeriod,
+      </if>
+      <if test="borrowercardno != null">
+        borrowerCardNo,
+      </if>
+      <if test="borrowermobile != null">
+        borrowerMobile,
+      </if>
+      <if test="borrowerbank != null">
+        borrowerBank,
+      </if>
+      <if test="borrowerbankcardno != null">
+        borrowerBankCardNo,
+      </if>
+      <if test="borroweraddress != null">
+        borrowerAddress,
+      </if>
+      <if test="borrowerpostcode != null">
+        borrowerPostCode,
+      </if>
+      <if test="borroweremail != null">
+        borrowerEmail,
+      </if>
+      <if test="contractsigntime != null">
+        contractSignTime,
+      </if>
+      <if test="borrowdeadline != null">
+        borrowDeadLine,
+      </if>
+      <if test="borrowdeadlineunit != null">
+        borrowDeadLineUnit,
+      </if>
+      <if test="borrowstarttime != null">
+        borrowStartTime,
+      </if>
+      <if test="borrowendtime != null">
+        borrowEndTime,
+      </if>
+      <if test="borrowrate != null">
+        borrowRate,
+      </if>
+      <if test="productname != null">
+        productName,
+      </if>
+      <if test="lenderactualorganizationname != null">
+        lenderActualOrganizationName,
+      </if>
+      <if test="lenderactualorganizationcode != null">
+        lenderActualOrganizationCode,
+      </if>
+      <if test="contractamount != null">
+        contractAmount,
+      </if>
+      <if test="repaymenttype != null">
+        repaymentType,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="businesscode01 != null">
+        #{businesscode01,jdbcType=VARCHAR},
+      </if>
+      <if test="businesscode02 != null">
+        #{businesscode02,jdbcType=VARCHAR},
+      </if>
+      <if test="businesscode03 != null">
+        #{businesscode03,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowername != null">
+        #{borrowername,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowergender != null">
+        #{borrowergender,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowerbirthday != null">
+        #{borrowerbirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowerenname != null">
+        #{borrowerenname,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowercardtype != null">
+        #{borrowercardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowercardperiod != null">
+        #{borrowercardperiod,jdbcType=DATE},
+      </if>
+      <if test="borrowercardno != null">
+        #{borrowercardno,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowermobile != null">
+        #{borrowermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowerbank != null">
+        #{borrowerbank,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowerbankcardno != null">
+        #{borrowerbankcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="borroweraddress != null">
+        #{borroweraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowerpostcode != null">
+        #{borrowerpostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="borroweremail != null">
+        #{borroweremail,jdbcType=VARCHAR},
+      </if>
+      <if test="contractsigntime != null">
+        #{contractsigntime,jdbcType=DATE},
+      </if>
+      <if test="borrowdeadline != null">
+        #{borrowdeadline,jdbcType=INTEGER},
+      </if>
+      <if test="borrowdeadlineunit != null">
+        #{borrowdeadlineunit,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowstarttime != null">
+        #{borrowstarttime,jdbcType=DATE},
+      </if>
+      <if test="borrowendtime != null">
+        #{borrowendtime,jdbcType=DATE},
+      </if>
+      <if test="borrowrate != null">
+        #{borrowrate,jdbcType=REAL},
+      </if>
+      <if test="productname != null">
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderactualorganizationname != null">
+        #{lenderactualorganizationname,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderactualorganizationcode != null">
+        #{lenderactualorganizationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractamount != null">
+        #{contractamount,jdbcType=REAL},
+      </if>
+      <if test="repaymenttype != null">
+        #{repaymenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dreampig.arbitrationservice.model.NotarialCertificateSum">
+    update t_notarial_certificate_sum
+    <set>
+      <if test="businesscode01 != null">
+        businessCode01 = #{businesscode01,jdbcType=VARCHAR},
+      </if>
+      <if test="businesscode02 != null">
+        businessCode02 = #{businesscode02,jdbcType=VARCHAR},
+      </if>
+      <if test="businesscode03 != null">
+        businessCode03 = #{businesscode03,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowername != null">
+        borrowerName = #{borrowername,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowergender != null">
+        borrowerGender = #{borrowergender,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowerbirthday != null">
+        borrowerBirthday = #{borrowerbirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowerenname != null">
+        borrowerEnName = #{borrowerenname,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowercardtype != null">
+        borrowerCardType = #{borrowercardtype,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowercardperiod != null">
+        borrowerCardPeriod = #{borrowercardperiod,jdbcType=DATE},
+      </if>
+      <if test="borrowercardno != null">
+        borrowerCardNo = #{borrowercardno,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowermobile != null">
+        borrowerMobile = #{borrowermobile,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowerbank != null">
+        borrowerBank = #{borrowerbank,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowerbankcardno != null">
+        borrowerBankCardNo = #{borrowerbankcardno,jdbcType=VARCHAR},
+      </if>
+      <if test="borroweraddress != null">
+        borrowerAddress = #{borroweraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowerpostcode != null">
+        borrowerPostCode = #{borrowerpostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="borroweremail != null">
+        borrowerEmail = #{borroweremail,jdbcType=VARCHAR},
+      </if>
+      <if test="contractsigntime != null">
+        contractSignTime = #{contractsigntime,jdbcType=DATE},
+      </if>
+      <if test="borrowdeadline != null">
+        borrowDeadLine = #{borrowdeadline,jdbcType=INTEGER},
+      </if>
+      <if test="borrowdeadlineunit != null">
+        borrowDeadLineUnit = #{borrowdeadlineunit,jdbcType=VARCHAR},
+      </if>
+      <if test="borrowstarttime != null">
+        borrowStartTime = #{borrowstarttime,jdbcType=DATE},
+      </if>
+      <if test="borrowendtime != null">
+        borrowEndTime = #{borrowendtime,jdbcType=DATE},
+      </if>
+      <if test="borrowrate != null">
+        borrowRate = #{borrowrate,jdbcType=REAL},
+      </if>
+      <if test="productname != null">
+        productName = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderactualorganizationname != null">
+        lenderActualOrganizationName = #{lenderactualorganizationname,jdbcType=VARCHAR},
+      </if>
+      <if test="lenderactualorganizationcode != null">
+        lenderActualOrganizationCode = #{lenderactualorganizationcode,jdbcType=VARCHAR},
+      </if>
+      <if test="contractamount != null">
+        contractAmount = #{contractamount,jdbcType=REAL},
+      </if>
+      <if test="repaymenttype != null">
+        repaymentType = #{repaymenttype,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dreampig.arbitrationservice.model.NotarialCertificateSum">
+    update t_notarial_certificate_sum
+    set businessCode01 = #{businesscode01,jdbcType=VARCHAR},
+      businessCode02 = #{businesscode02,jdbcType=VARCHAR},
+      businessCode03 = #{businesscode03,jdbcType=VARCHAR},
+      borrowerName = #{borrowername,jdbcType=VARCHAR},
+      borrowerGender = #{borrowergender,jdbcType=VARCHAR},
+      borrowerBirthday = #{borrowerbirthday,jdbcType=VARCHAR},
+      borrowerEnName = #{borrowerenname,jdbcType=VARCHAR},
+      borrowerCardType = #{borrowercardtype,jdbcType=VARCHAR},
+      borrowerCardPeriod = #{borrowercardperiod,jdbcType=DATE},
+      borrowerCardNo = #{borrowercardno,jdbcType=VARCHAR},
+      borrowerMobile = #{borrowermobile,jdbcType=VARCHAR},
+      borrowerBank = #{borrowerbank,jdbcType=VARCHAR},
+      borrowerBankCardNo = #{borrowerbankcardno,jdbcType=VARCHAR},
+      borrowerAddress = #{borroweraddress,jdbcType=VARCHAR},
+      borrowerPostCode = #{borrowerpostcode,jdbcType=VARCHAR},
+      borrowerEmail = #{borroweremail,jdbcType=VARCHAR},
+      contractSignTime = #{contractsigntime,jdbcType=DATE},
+      borrowDeadLine = #{borrowdeadline,jdbcType=INTEGER},
+      borrowDeadLineUnit = #{borrowdeadlineunit,jdbcType=VARCHAR},
+      borrowStartTime = #{borrowstarttime,jdbcType=DATE},
+      borrowEndTime = #{borrowendtime,jdbcType=DATE},
+      borrowRate = #{borrowrate,jdbcType=REAL},
+      productName = #{productname,jdbcType=VARCHAR},
+      lenderActualOrganizationName = #{lenderactualorganizationname,jdbcType=VARCHAR},
+      lenderActualOrganizationCode = #{lenderactualorganizationcode,jdbcType=VARCHAR},
+      contractAmount = #{contractamount,jdbcType=REAL},
+      repaymentType = #{repaymenttype,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

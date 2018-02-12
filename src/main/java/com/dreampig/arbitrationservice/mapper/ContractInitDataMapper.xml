@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dreampig.arbitrationservice.mapper.ContractInitDataMapper">
+  <resultMap id="BaseResultMap" type="com.dreampig.arbitrationservice.model.ContractInitData">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="sign" jdbcType="VARCHAR" property="sign" />
+    <result column="fileBodyMd5" jdbcType="VARCHAR" property="filebodymd5" />
+    <result column="fileBodyHash" jdbcType="VARCHAR" property="filebodyhash" />
+    <result column="notarialCertificateApplicatSumJson" jdbcType="INTEGER" property="notarialcertificateapplicatsumjson" />
+    <result column="lenderInfos" jdbcType="INTEGER" property="lenderinfos" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.dreampig.arbitrationservice.model.ContractInitData">
+    <result column="fileBody" jdbcType="LONGVARBINARY" property="filebody" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, sign, fileBodyMd5, fileBodyHash, notarialCertificateApplicatSumJson, lenderInfos, 
+    updatetime, createtime
+  </sql>
+  <sql id="Blob_Column_List">
+    fileBody
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_contractinitdata
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_contractinitdata
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dreampig.arbitrationservice.model.ContractInitData">
+    insert into t_contractinitdata (id, type, sign, 
+      fileBodyMd5, fileBodyHash, notarialCertificateApplicatSumJson, 
+      lenderInfos, updatetime, createtime, 
+      fileBody)
+    values (#{id,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, 
+      #{filebodymd5,jdbcType=VARCHAR}, #{filebodyhash,jdbcType=VARCHAR}, #{notarialcertificateapplicatsumjson,jdbcType=INTEGER}, 
+      #{lenderinfos,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{filebody,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dreampig.arbitrationservice.model.ContractInitData">
+    insert into t_contractinitdata
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="sign != null">
+        sign,
+      </if>
+      <if test="filebodymd5 != null">
+        fileBodyMd5,
+      </if>
+      <if test="filebodyhash != null">
+        fileBodyHash,
+      </if>
+      <if test="notarialcertificateapplicatsumjson != null">
+        notarialCertificateApplicatSumJson,
+      </if>
+      <if test="lenderinfos != null">
+        lenderInfos,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="filebody != null">
+        fileBody,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="filebodymd5 != null">
+        #{filebodymd5,jdbcType=VARCHAR},
+      </if>
+      <if test="filebodyhash != null">
+        #{filebodyhash,jdbcType=VARCHAR},
+      </if>
+      <if test="notarialcertificateapplicatsumjson != null">
+        #{notarialcertificateapplicatsumjson,jdbcType=INTEGER},
+      </if>
+      <if test="lenderinfos != null">
+        #{lenderinfos,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="filebody != null">
+        #{filebody,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dreampig.arbitrationservice.model.ContractInitData">
+    update t_contractinitdata
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null">
+        sign = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="filebodymd5 != null">
+        fileBodyMd5 = #{filebodymd5,jdbcType=VARCHAR},
+      </if>
+      <if test="filebodyhash != null">
+        fileBodyHash = #{filebodyhash,jdbcType=VARCHAR},
+      </if>
+      <if test="notarialcertificateapplicatsumjson != null">
+        notarialCertificateApplicatSumJson = #{notarialcertificateapplicatsumjson,jdbcType=INTEGER},
+      </if>
+      <if test="lenderinfos != null">
+        lenderInfos = #{lenderinfos,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="filebody != null">
+        fileBody = #{filebody,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.dreampig.arbitrationservice.model.ContractInitData">
+    update t_contractinitdata
+    set type = #{type,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      fileBodyMd5 = #{filebodymd5,jdbcType=VARCHAR},
+      fileBodyHash = #{filebodyhash,jdbcType=VARCHAR},
+      notarialCertificateApplicatSumJson = #{notarialcertificateapplicatsumjson,jdbcType=INTEGER},
+      lenderInfos = #{lenderinfos,jdbcType=INTEGER},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      fileBody = #{filebody,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dreampig.arbitrationservice.model.ContractInitData">
+    update t_contractinitdata
+    set type = #{type,jdbcType=VARCHAR},
+      sign = #{sign,jdbcType=VARCHAR},
+      fileBodyMd5 = #{filebodymd5,jdbcType=VARCHAR},
+      fileBodyHash = #{filebodyhash,jdbcType=VARCHAR},
+      notarialCertificateApplicatSumJson = #{notarialcertificateapplicatsumjson,jdbcType=INTEGER},
+      lenderInfos = #{lenderinfos,jdbcType=INTEGER},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
