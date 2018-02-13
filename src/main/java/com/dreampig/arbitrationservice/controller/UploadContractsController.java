@@ -39,7 +39,7 @@ public class UploadContractsController {
     @RequestMapping(value = "/applyContractInitData",method = RequestMethod.POST)
     @ResponseBody
     @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,timeout = 36000,rollbackFor = Exception.class)
-    public MessageData uploadContracts(String type, String sign, String token, @RequestBody String contracts){
+    public MessageData uploadContracts(@RequestHeader String type,@RequestHeader String sign,@RequestHeader String token, @RequestBody String contracts){
         MessageData messageData = new MessageData();
         if(type !=null && sign !=null && token !=null){
             if(arbitrationTokenService.verifyToken(token)){
