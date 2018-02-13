@@ -56,9 +56,10 @@ public class ServicesController {
     
     @RequestMapping(value = "/applyStatementInitData",method = RequestMethod.POST)
     @ResponseBody
-    public String applyStatementInitData(String type, String sid, String password,@RequestBody String requestBody){
+    public MessageData applyStatementInitData(@RequestHeader String type,@RequestHeader String sid,@RequestHeader String password){
     	System.out.println(type+":"+sid+":"+password);
         Authentication authentication = new Authentication();
+        MessageData messageData = new MessageData();
         authentication.setSid(sid);
         authentication.setType(type);
         authentication.setPassword(password);
@@ -74,13 +75,13 @@ public class ServicesController {
 //				e.printStackTrace();
 //			}
 //        }
-    	return "";
+    	return messageData;
     }
     
     @RequestMapping(value = "/applyRepaymentInitData",method = RequestMethod.POST)
     @ResponseBody
-    public String applyRepaymentInitData(String type, String sid, String password,@RequestBody String requestBody){
-       
-    	return "";
+    public MessageData applyRepaymentInitData(@RequestHeader String type,@RequestHeader String sid,@RequestHeader String password){
+    	MessageData messageData = new MessageData();
+    	return messageData;
     }
 }
