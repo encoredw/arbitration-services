@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dreampig.arbitrationservice.mapper.RepaymentStatementDataMapper">
+  <resultMap id="BaseResultMap" type="com.dreampig.arbitrationservice.model.RepaymentStatementData">
+    <id column="ID" jdbcType="BIGINT" property="id" />
+    <result column="ACCOUNT_STATEMENT_CODE" jdbcType="VARCHAR" property="accountStatementCode" />
+    <result column="REPAYMENT_SERIAL_NUMBER" jdbcType="VARCHAR" property="repaymentSerialNumber" />
+    <result column="REPAY_ACCOUNT_NO" jdbcType="VARCHAR" property="repayAccountNo" />
+    <result column="REPAYMENT_BANK" jdbcType="VARCHAR" property="repaymentBank" />
+    <result column="RECEIVE_ACCOUNT_NO" jdbcType="VARCHAR" property="receiveAccountNo" />
+    <result column="REPAYMENT_AMOUNT" jdbcType="DECIMAL" property="repaymentAmount" />
+    <result column="REPAYMENT_TIME" jdbcType="DATE" property="repaymentTime" />
+    <result column="BUSINESS_CODE01" jdbcType="VARCHAR" property="businessCode01" />
+    <result column="BUSINESS_CODE02" jdbcType="VARCHAR" property="businessCode02" />
+    <result column="BUSINESS_CODE03" jdbcType="VARCHAR" property="businessCode03" />
+    <result column="IMPORT_TIME" jdbcType="TIMESTAMP" property="importTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ACCOUNT_STATEMENT_CODE, REPAYMENT_SERIAL_NUMBER, REPAY_ACCOUNT_NO, REPAYMENT_BANK, 
+    RECEIVE_ACCOUNT_NO, REPAYMENT_AMOUNT, REPAYMENT_TIME, BUSINESS_CODE01, BUSINESS_CODE02, 
+    BUSINESS_CODE03, IMPORT_TIME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_repayment_statement
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_repayment_statement
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.dreampig.arbitrationservice.model.RepaymentStatementData">
+    insert into t_repayment_statement (ID, ACCOUNT_STATEMENT_CODE, REPAYMENT_SERIAL_NUMBER, 
+      REPAY_ACCOUNT_NO, REPAYMENT_BANK, RECEIVE_ACCOUNT_NO, 
+      REPAYMENT_AMOUNT, REPAYMENT_TIME, BUSINESS_CODE01, 
+      BUSINESS_CODE02, BUSINESS_CODE03, IMPORT_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{accountStatementCode,jdbcType=VARCHAR}, #{repaymentSerialNumber,jdbcType=VARCHAR}, 
+      #{repayAccountNo,jdbcType=VARCHAR}, #{repaymentBank,jdbcType=VARCHAR}, #{receiveAccountNo,jdbcType=VARCHAR}, 
+      #{repaymentAmount,jdbcType=DECIMAL}, #{repaymentTime,jdbcType=DATE}, #{businessCode01,jdbcType=VARCHAR}, 
+      #{businessCode02,jdbcType=VARCHAR}, #{businessCode03,jdbcType=VARCHAR}, #{importTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dreampig.arbitrationservice.model.RepaymentStatementData">
+    insert into t_repayment_statement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="accountStatementCode != null">
+        ACCOUNT_STATEMENT_CODE,
+      </if>
+      <if test="repaymentSerialNumber != null">
+        REPAYMENT_SERIAL_NUMBER,
+      </if>
+      <if test="repayAccountNo != null">
+        REPAY_ACCOUNT_NO,
+      </if>
+      <if test="repaymentBank != null">
+        REPAYMENT_BANK,
+      </if>
+      <if test="receiveAccountNo != null">
+        RECEIVE_ACCOUNT_NO,
+      </if>
+      <if test="repaymentAmount != null">
+        REPAYMENT_AMOUNT,
+      </if>
+      <if test="repaymentTime != null">
+        REPAYMENT_TIME,
+      </if>
+      <if test="businessCode01 != null">
+        BUSINESS_CODE01,
+      </if>
+      <if test="businessCode02 != null">
+        BUSINESS_CODE02,
+      </if>
+      <if test="businessCode03 != null">
+        BUSINESS_CODE03,
+      </if>
+      <if test="importTime != null">
+        IMPORT_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="accountStatementCode != null">
+        #{accountStatementCode,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentSerialNumber != null">
+        #{repaymentSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAccountNo != null">
+        #{repayAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentBank != null">
+        #{repaymentBank,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAccountNo != null">
+        #{receiveAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentAmount != null">
+        #{repaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="repaymentTime != null">
+        #{repaymentTime,jdbcType=DATE},
+      </if>
+      <if test="businessCode01 != null">
+        #{businessCode01,jdbcType=VARCHAR},
+      </if>
+      <if test="businessCode02 != null">
+        #{businessCode02,jdbcType=VARCHAR},
+      </if>
+      <if test="businessCode03 != null">
+        #{businessCode03,jdbcType=VARCHAR},
+      </if>
+      <if test="importTime != null">
+        #{importTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dreampig.arbitrationservice.model.RepaymentStatementData">
+    update t_repayment_statement
+    <set>
+      <if test="accountStatementCode != null">
+        ACCOUNT_STATEMENT_CODE = #{accountStatementCode,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentSerialNumber != null">
+        REPAYMENT_SERIAL_NUMBER = #{repaymentSerialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAccountNo != null">
+        REPAY_ACCOUNT_NO = #{repayAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentBank != null">
+        REPAYMENT_BANK = #{repaymentBank,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveAccountNo != null">
+        RECEIVE_ACCOUNT_NO = #{receiveAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentAmount != null">
+        REPAYMENT_AMOUNT = #{repaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="repaymentTime != null">
+        REPAYMENT_TIME = #{repaymentTime,jdbcType=DATE},
+      </if>
+      <if test="businessCode01 != null">
+        BUSINESS_CODE01 = #{businessCode01,jdbcType=VARCHAR},
+      </if>
+      <if test="businessCode02 != null">
+        BUSINESS_CODE02 = #{businessCode02,jdbcType=VARCHAR},
+      </if>
+      <if test="businessCode03 != null">
+        BUSINESS_CODE03 = #{businessCode03,jdbcType=VARCHAR},
+      </if>
+      <if test="importTime != null">
+        IMPORT_TIME = #{importTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dreampig.arbitrationservice.model.RepaymentStatementData">
+    update t_repayment_statement
+    set ACCOUNT_STATEMENT_CODE = #{accountStatementCode,jdbcType=VARCHAR},
+      REPAYMENT_SERIAL_NUMBER = #{repaymentSerialNumber,jdbcType=VARCHAR},
+      REPAY_ACCOUNT_NO = #{repayAccountNo,jdbcType=VARCHAR},
+      REPAYMENT_BANK = #{repaymentBank,jdbcType=VARCHAR},
+      RECEIVE_ACCOUNT_NO = #{receiveAccountNo,jdbcType=VARCHAR},
+      REPAYMENT_AMOUNT = #{repaymentAmount,jdbcType=DECIMAL},
+      REPAYMENT_TIME = #{repaymentTime,jdbcType=DATE},
+      BUSINESS_CODE01 = #{businessCode01,jdbcType=VARCHAR},
+      BUSINESS_CODE02 = #{businessCode02,jdbcType=VARCHAR},
+      BUSINESS_CODE03 = #{businessCode03,jdbcType=VARCHAR},
+      IMPORT_TIME = #{importTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
