@@ -5,8 +5,12 @@ import com.dreampig.arbitrationservice.model.LenderInfo;
 import com.dreampig.arbitrationservice.service.LenderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service(value = "lenderInfoService")
+@Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,timeout = 36000,rollbackFor = Exception.class)
 public class LenderInfoServiceImpl implements LenderInfoService {
 
     @Autowired
@@ -22,6 +26,7 @@ public class LenderInfoServiceImpl implements LenderInfoService {
     }
 
     @Override
+    @Transactional
     public int insertSelective(LenderInfo record) {
         return lenderInfoMapper.insertSelective(record);
     }

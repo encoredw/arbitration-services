@@ -22,7 +22,7 @@ public class ServicesController {
 
     @RequestMapping(value = "/getToken",method = RequestMethod.POST)
     @ResponseBody
-    public MessageData getToken(String type, String sid, String password, @RequestBody String requestBody){
+    public MessageData getToken(@RequestHeader String type,@RequestHeader String sid,@RequestHeader String password){
 
         Authentication authentication = new Authentication();
         MessageData messageData = new MessageData();

@@ -5,8 +5,13 @@ import com.dreampig.arbitrationservice.model.Authentication;
 import com.dreampig.arbitrationservice.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service(value = "authenticationService")
+@Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,timeout = 36000,rollbackFor = Exception.class)
+
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Autowired

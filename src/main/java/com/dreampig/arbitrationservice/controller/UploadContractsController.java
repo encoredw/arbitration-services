@@ -13,6 +13,9 @@ import com.dreampig.arbitrationservice.service.ContractInitDataService;
 import com.dreampig.arbitrationservice.service.LenderInfoService;
 import com.dreampig.arbitrationservice.service.NotarialCertificateSumService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -35,6 +38,7 @@ public class UploadContractsController {
 
     @RequestMapping(value = "/applyContractInitData",method = RequestMethod.POST)
     @ResponseBody
+    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,timeout = 36000,rollbackFor = Exception.class)
     public MessageData uploadContracts(String type, String sign, String token, @RequestBody String contracts){
         MessageData messageData = new MessageData();
         if(type !=null && sign !=null && token !=null){
@@ -51,20 +55,19 @@ public class UploadContractsController {
                     contractInitData.setFilebodymd5(contractInitDataJson.getFileBodyMD5());
                     contractInitData.setCreatetime(new Date());
                    // contractInitData.setFilebodyhash(AESUtils.byteToHexString(contractInitDataJson.getFileBody()));
-                    try {
+
                        int ncfsId = notarialCertificateSumService.insertSelective(notarialCertificateSum);
                        int lnfsId = lenderInfoService.insertSelective(lenderInfo);
                         contractInitData.setNotarialcertificateapplicatsumjson(notarialCertificateSum.getId());
                         contractInitData.setLenderinfos(lenderInfo.getId());
+                        String test =null;
+                        test.charAt(1);
                        int ctdsId = contractInitDataService.insertSelective(contractInitData);
                        if(ncfsId==1 && lnfsId==1 && ctdsId==1){
                            messageData.setRetCode("0000");
                            messageData.setRetMsg("Success");
                            messageData.setSaveCode(contractInitData.getId().toString());
                        }
-                    }catch (Exception e){
-                       e.printStackTrace();
-                    }
 
                 }
 

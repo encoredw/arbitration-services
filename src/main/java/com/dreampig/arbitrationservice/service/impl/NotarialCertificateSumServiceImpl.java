@@ -5,8 +5,12 @@ import com.dreampig.arbitrationservice.model.NotarialCertificateSum;
 import com.dreampig.arbitrationservice.service.NotarialCertificateSumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service(value = "notarialCertificateSumService")
+@Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,timeout = 36000,rollbackFor = Exception.class)
 public class NotarialCertificateSumServiceImpl implements NotarialCertificateSumService {
 
     @Autowired
