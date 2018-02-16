@@ -197,3 +197,16 @@ CREATE TABLE `t_repayment_statement` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/** 网络仲裁案件收费标准**/
+DROP TABLE IF EXISTS `t_arbitration_fee_std`;
+CREATE TABLE `t_arbitration_fee_std` (
+`ID` int NOT NULL AUTO_INCREMENT COMMENT '主键',
+`OWE_AMOUNT` decimal(11,2) NOT NULL COMMENT '争议金额（单位：元，“1元”为1.00）',
+`ARBITRATION_FEE` decimal(11,2) NOT NULL COMMENT '仲裁收费',
+`ARB_PASSAGE_FEE` decimal(11,2) NOT NULL COMMENT '仲裁通道费',
+`SMS_FEE` decimal(3,2) NOT NULL COMMENT '短息服务费',
+`PRE_ENFORCE_CONS_FEE` decimal(11,2) NOT NULL COMMENT '执行前期咨询费用',
+`ENFORCE_FEE` decimal(3,2) NOT NULL COMMENT '执行后期收费,百分比转为小数',
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
