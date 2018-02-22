@@ -1,9 +1,10 @@
 /**token 认证信息表**/
 CREATE TABLE t_authentication(
-  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键ID',
-  type VARCHAR(255) NOT NULL COMMENT '业务区分',
-  sid VARCHAR(255) NOT NULL COMMENT '第三方系统编号',
-  password VARCHAR(255) NOT NULL COMMENT '第三方登陆密码'
+  ID INT NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键ID',
+  ORGANIZATION_CODE varchar(30) DEFAULT NULL COMMENT '企业统一社会信用代码证',
+  COMPANY_NAME varchar(100) DEFAULT NULL COMMENT '企业名称',
+  SID VARCHAR(255) NOT NULL COMMENT '企业系统编号',
+  PASSWORD VARCHAR(255) NOT NULL COMMENT '企业系统登陆密码'
 ) ENGINE=INNODB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 /**token 存放表**/
@@ -215,13 +216,13 @@ CREATE TABLE `t_arbitration_fee_std` (
 DROP TABLE IF EXISTS `t_arbitration_user`;
 CREATE TABLE `t_arbitration_user` (
   `USER_ID` int(20) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `ORGANIZATION_CODE` varchar(30) DEFAULT NULL COMMENT '企业统一社会信用代码证',
   `IS_USED` int(11) NOT NULL DEFAULT '1' COMMENT '启用区分 0-禁用 1-启用',
   `USER_CODE` varchar(11) NOT NULL COMMENT '用户编码',
   `MOBILE_NUMBER` varchar(11) NOT NULL COMMENT '用户手机号',
   `USER_NAME` varchar(100) NOT NULL COMMENT '真实姓名',
   `PASSWORD` varchar(100) NOT NULL COMMENT '用户密码',
   `ID_NUMBER` varchar(18) NOT NULL COMMENT '身份证号码',
-  `CHANNEL_TYPE` varchar(20) NOT NULL COMMENT '所属渠道 仲裁委',
   `DEPARTMENT_CODE` varchar(20) DEFAULT NULL COMMENT '所属部门编码',
   `POSITION_DESC` varchar(20) DEFAULT NULL COMMENT '职位',
   `ROLE_CODE` varchar(11) DEFAULT '' COMMENT '角色编码 0-仲裁委管理员 1-仲裁员 2-仲裁秘书',
@@ -230,20 +231,20 @@ CREATE TABLE `t_arbitration_user` (
   `UPDATE_USER` varchar(50) DEFAULT NULL COMMENT '修改人',
   `UPDATE_TIME` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`USER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 -- Table structure for t_net_fin_user
 -- ----------------------------
 DROP TABLE IF EXISTS `t_net_fin_user`;
 CREATE TABLE `t_net_fin_user` (
   `USER_ID` int(20) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `ORGANIZATION_CODE` varchar(30) DEFAULT NULL COMMENT '企业统一社会信用代码证',
   `IS_USED` int(11) NOT NULL DEFAULT '1' COMMENT '启用区分 0-禁用 1-启用',
   `USER_CODE` varchar(11) NOT NULL COMMENT '用户编码',
   `MOBILE_NUMBER` varchar(11) NOT NULL COMMENT '用户手机号',
   `USER_NAME` varchar(100) NOT NULL COMMENT '真实姓名',
   `PASSWORD` varchar(100) NOT NULL COMMENT '用户密码',
   `ID_NUMBER` varchar(18) NOT NULL COMMENT '身份证号码',
-  `CHANNEL_TYPE` varchar(20) NOT NULL COMMENT '所属渠道 互金公司',
   `DEPARTMENT_CODE` varchar(20) DEFAULT NULL COMMENT '所属部门编码',
   `POSITION_DESC` varchar(20) DEFAULT NULL COMMENT '职位',
   `ROLE_CODE` varchar(11) DEFAULT '' COMMENT '角色编码 0-互金公司管理员 1-互金公司管理层 2-互金公司普通职员',
@@ -252,5 +253,5 @@ CREATE TABLE `t_net_fin_user` (
   `UPDATE_USER` varchar(50) DEFAULT NULL COMMENT '修改人',
   `UPDATE_TIME` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`USER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
